@@ -48,17 +48,21 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $input = ([
+        $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'phone' => $request->phone,
-            'role' => $request->role,
+            'role' => "user",
             'password' => bcrypt($request->password),
         ]);
 
-        $data = new User;
-        $data->create($input);
+        // $data = new User;
+        // $data->create($input);
+        if ($user) {
+            $userView = new UserView(['user_id' => $user->id]);
+            $user->views()->save($userView);
+        }
         return redirect()->route('user.index')->with('success', 'berhasil tambah data');
     }
 
@@ -70,12 +74,20 @@ class UserController extends Controller
         $data = User::where('username', $username)->firstOrFail();
         $profiling = Profiling::where('user_id', $data->id)->first();
 
-        // Dapatkan semua postingan pengguna
-        $posts = $data->posts;
+        // Dapatkan atau buat record UserView berdasarkan user_id
+        $userViews = UserView::where('user_id', $data->id)->first();
+        if (!$userViews) {
+            $userViews = new UserView();
+            $userViews->user_id = $data->id;
+            $userViews->views = 0; // Inisialisasi views jika baru
+            $userViews->save();
+        }
 
         // Increment jumlah pengunjung setiap kali halaman dilihat
-        $userViews = new UserView();
         $userViews->increment('views');
+
+        // Dapatkan semua postingan pengguna
+        $posts = $data->posts;
 
         // Mendapatkan data provinsi
         $path_province = public_path('location/province.json');
