@@ -54,6 +54,7 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger mt-2">Hapus</button>
                                         </form>
+                                        <a href="{{route('user.show', $item->username)}}" class="btn btn-info mt-2">visit</a>
                                     </td>
                                 </tr>
                                 <!-- Modal -->

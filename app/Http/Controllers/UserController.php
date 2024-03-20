@@ -57,8 +57,6 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        // $data = new User;
-        // $data->create($input);
         if ($user) {
             $userView = new UserView(['user_id' => $user->id]);
             $user->views()->save($userView);
