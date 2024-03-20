@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profiling;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 
@@ -225,5 +226,28 @@ class ProfileController extends Controller
             }
         }
         return response()->json(['postal_code' => $postal_code]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // Validasi data yang diterima dari form
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        // Ambil pengguna yang sedang masuk
+        $user = auth()->user();
+
+        // Periksa apakah kata sandi saat ini cocok
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+
+        // Ubah kata sandi pengguna
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Password has been updated successfully.');
     }
 }

@@ -11,7 +11,7 @@
         </div>
         {{-- </div>
     <div class="row"> --}}
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">User Profile</h4>
@@ -43,6 +43,34 @@
                         </div>
                         <button class="btn btn-success">
                             Update
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Form Ubah Sandi</h4>
+                    <p class="card-description">
+                        Change your password
+                    </p>
+                    <form class="forms-sample" action="{{ route('profile.updatePassword') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="email">Current Password <span style="color: red;">*</span></label>
+                            <input class="form-control" type="password" id="current_password" name="current_password">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">New Password <span style="color: red;">*</span></label>
+                            <input class="form-control" type="password" id="new_password" name="new_password">
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password_confirmation">Confirm New Password <span style="color: red;">*</span></label>
+                            <input class="form-control" type="password" id="new_password_confirmation" name="new_password_confirmation">
+                        </div>
+                        <button class="btn btn-danger">
+                            Change Password
                         </button>
                     </form>
                 </div>
