@@ -33,6 +33,7 @@
                                 <th>email</th>
                                 <th>phone</th>
                                 <th>role</th>
+                                <th>views</th>
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -45,6 +46,7 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->role }}</td>
+                                    <td>{{ $item->views->views }}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning" data-toggle="modal"
                                             data-target="#editModal{{ $loop->iteration }}">Edit</a>
@@ -54,7 +56,7 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger mt-2">Hapus</button>
                                         </form>
-                                        <a href="{{route('user.show', $item->username)}}" class="btn btn-info mt-2">visit</a>
+                                        <a target="_blank" href="{{route('user.show', $item->username)}}" class="btn btn-info mt-2">visit</a>
                                     </td>
                                 </tr>
                                 <!-- Modal -->
