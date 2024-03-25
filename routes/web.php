@@ -17,11 +17,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/post', PostController::class);
 
-    Route::get('/user', [UserController::class, 'index'])->name('user.index');
-    Route::get('/create', [UserController::class, 'create'])->name('user.create');
-    Route::post('/update/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::post('/store', [UserController::class, 'store'])->name('user.store');
-    Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');
@@ -31,6 +26,14 @@ Route::middleware(['auth'])->group(function () {
     
     Route::post('/selectProvince', [ProfileController::class, 'selectProvince'])->name('selectProvince');
     Route::post('/selectRegency', [ProfileController::class, 'selectRegency'])->name('selectRegency');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/update/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::post('/store', [UserController::class, 'store'])->name('user.store');
+    Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 });
 
 Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
