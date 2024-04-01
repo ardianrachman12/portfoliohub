@@ -16,7 +16,6 @@ Route::get('/portfolio/{username}', [UserController::class, 'show'])->name('user
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/post', PostController::class);
-
     
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');
@@ -26,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
     
     Route::post('/selectProvince', [ProfileController::class, 'selectProvince'])->name('selectProvince');
     Route::post('/selectRegency', [ProfileController::class, 'selectRegency'])->name('selectRegency');
+
+    Route::get('/getDataUserForChart', [DashboardController::class, 'getDataUserForChart']);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

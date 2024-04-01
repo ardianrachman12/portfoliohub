@@ -29,4 +29,52 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">User Count Chart</h4>
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+@push('scripts')
+    <script>
+        $.ajax({
+            url: '/getDataUserForChart',
+            type: 'GET',
+            success: function(response) {
+                var adminCount = response.adminCount;
+                var userCount = response.userCount;
+
+                var doughnutPieData = {
+                    datasets: [{
+                        data: [adminCount, userCount],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                    }],
+
+                    // These labels appear in the legend and in the tooltips when hovering different arcs
+                    labels: [
+                        'Admin',
+                        'User',
+                    ]
+                };
+
+                var doughnutChartCanvas = document.getElementById("doughnutChart");
+                var doughnutChart = new Chart(doughnutChartCanvas, {
+                    type: 'doughnut',
+                    data: doughnutPieData
+                });
+            }
+        });
+    </script>
+@endpush
