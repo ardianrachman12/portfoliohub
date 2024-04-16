@@ -7,4 +7,4 @@
 <!-- inject:css -->
 <link rel="stylesheet" href="{{asset('template-admin/css/style.css')}}">
 <!-- endinject -->
-<link rel="shortcut icon" href="{{asset('template-admin/images/favicon.png')}}" />
+<link rel="shortcut icon" href="{{asset('logo/porfoliohub-mini-logo.png')}}" />
