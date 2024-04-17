@@ -138,7 +138,7 @@
         $(document).ready(function() {
             $('#myTable').DataTable({
                 "columnDefs": [{
-                    "targets": [2], // Ganti [3] dengan nomor indeks kolom yang ingin Anda ubah
+                    "targets": [1, 2],
                     "render": function(data, type, row) {
                         return '<div style="word-wrap: break-word; white-space: pre-line;">' + data + '</div>';
                     }
