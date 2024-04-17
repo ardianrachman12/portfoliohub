@@ -24,7 +24,7 @@
         <div class="card position-relative">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table id="myTable" class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>no</th>
@@ -123,3 +123,10 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+@endpush

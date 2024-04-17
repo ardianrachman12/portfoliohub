@@ -8,3 +8,5 @@
 <link rel="stylesheet" href="{{asset('template-admin/css/style.css')}}">
 <!-- endinject -->
 <link rel="shortcut icon" href="{{asset('logo/porfoliohub-mini-logo.png')}}" />
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.dataTables.css" />
+

@@ -126,7 +126,12 @@
                                     <div class="mt-4">
                                         <p>{{ $item->deskripsi }}</p>
                                     </div>
-                                    {{-- <button class="btn btn-warning mt-2" disabled>{{ $item->tag }}</button> --}}
+                                    <div class="mt-2">
+                                        <a href="{{ strpos($item->url, 'http://') === 0 || strpos($item->url, 'https://') === 0 ? $item->url : 'http://' . $item->url }}"
+                                            target="_blank">
+                                            <button class="btn btn-info d-block w-100">Go to site</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

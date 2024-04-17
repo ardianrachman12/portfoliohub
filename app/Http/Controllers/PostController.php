@@ -57,9 +57,8 @@ class PostController extends Controller
             'user_id' => $user->id,
             'title' => $request->input('title'),
             'deskripsi' => $request->input('deskripsi'),
-            // 'tag' => $request->input('tag'),
-            // 'image' => implode(',', $imagePaths), // Menggabungkan paths gambar menjadi string
             'image' => $imagePaths,
+            'url' => $request->input('url')
         ];
 
         Post::create($input);
@@ -111,8 +110,8 @@ class PostController extends Controller
                 // 'user_id' => $user->id,
                 'title' => $request->input('title'),
                 'deskripsi' => $request->input('deskripsi'),
-                // 'tag' => $request->input('tag'),
                 'image' => $imagePaths,
+                'url' => $request->input('url'),
             ];
         } else {
             // Jika tidak ada gambar yang diunggah, gunakan gambar yang sudah ada
@@ -120,7 +119,7 @@ class PostController extends Controller
                 // 'user_id' => $user->id,
                 'title' => $request->input('title'),
                 'deskripsi' => $request->input('deskripsi'),
-                // 'tag' => $request->input('tag'),
+                'url' => $request->input('url'),
             ];
         }
 

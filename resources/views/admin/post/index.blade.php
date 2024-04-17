@@ -24,14 +24,14 @@
         <div class="card position-relative">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table id="myTable" class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>title</th>
                                 <th>description</th>
+                                <th>url</th>
                                 <th>image</th>
-                                {{-- <th>tag</th> --}}
                                 @if ($user->role == 'admin')
                                     <th>created by</th>
                                 @endif
@@ -44,6 +44,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td style="word-wrap: break-word; white-space: pre-line;">{{ $post->deskripsi }}</td>
+                                    <td><a href="{{ strpos($post->url, 'http://') === 0 || strpos($post->url, 'https://') === 0 ? $post->url : 'http://' . $post->url }}"
+                                            target="_blank">{{ $post->url }}</a></td>
                                     <td>
                                         <div class="">
                                             @if ($post->image)
@@ -53,9 +55,8 @@
                                             @endif
                                         </div>
                                     </td>
-                                    {{-- <td>{{ $post->tag }}</td> --}}
                                     @if ($user->role == 'admin')
-                                        <td>{{$post->users->name}}</td>
+                                        <td>{{ $post->users->name }}</td>
                                     @endif
                                     <td>
                                         <a href="#" class="btn btn-warning" data-toggle="modal"
@@ -75,10 +76,6 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
-                                                {{-- <button type="button" data-dismiss="modal"
-                                                    >
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button> --}}
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Form Edit -->
@@ -96,6 +93,11 @@
                                                         <div class="form-group">
                                                             <label for="deskripsi">Description</label>
                                                             <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi">{{ $post->deskripsi }}</textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="url">Url</label>
+                                                            <input type="text" class="form-control" id="url"
+                                                                name="url" value="{{ $post->url }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>File upload</label>
@@ -116,13 +118,7 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                        {{-- <div class="form-group">
-                                                            <label for="tag">Tag</label>
-                                                            <input type="text" class="form-control" id="tag"
-                                                                name="tag" value="{{ $post->tag }}">
-                                                        </div> --}}
                                                         <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                                        {{-- <button class="btn btn-light">Cancel</button> --}}
                                                     </form>
                                                 </div>
                                             </div>
@@ -137,3 +133,10 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+@endpush

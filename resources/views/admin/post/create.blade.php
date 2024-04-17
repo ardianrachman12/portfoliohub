@@ -33,6 +33,10 @@
                                 <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required></textarea>
                             </div>
                             <div class="form-group">
+                                <label for="url">Url</label>
+                                <input type="text" class="form-control" id="url" name="url" required>
+                            </div>
+                            <div class="form-group">
                                 <label>File upload</label>
                                 <input type="file" class="form-control" placeholder="Upload Image" name="image[]">
                             </div>
