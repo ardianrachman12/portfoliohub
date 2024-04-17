@@ -138,10 +138,11 @@
         $(document).ready(function() {
             $('#myTable').DataTable({
                 "columnDefs": [{
-                    "targets": [3], // Ganti [3] dengan nomor indeks kolom yang ingin Anda ubah
+                    "targets": [2], // Ganti [3] dengan nomor indeks kolom yang ingin Anda ubah
                     "render": function(data, type, row) {
-                        return '<div style="white-space: pre-line;">' + data + '</div>';
+                        return '<div style="word-wrap: break-word; white-space: pre-line;">' + data + '</div>';
                     }
+                    
                 }]
             });
         });
