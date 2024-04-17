@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('regency');
             $table->string('province');
             $table->string('postal_code');
-            $table->string('description');
+            $table->text('description');
             $table->string('links');
             $table->string('jobs');
             $table->string('whatsapp');
