@@ -43,7 +43,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $post->title }}</td>
-                                    <td style="word-wrap: break-word; white-space: pre-line;">{{ $post->deskripsi }}</td>
+                                    <td style="word-wrap: break-word;">{{ $post->deskripsi }}</td>
                                     <td><a href="{{ strpos($post->url, 'http://') === 0 || strpos($post->url, 'https://') === 0 ? $post->url : 'http://' . $post->url }}"
                                             target="_blank">{{ $post->url }}</a></td>
                                     <td>
