@@ -136,11 +136,6 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
             $('#myTable').DataTable({
                 "columnDefs": [{
                     "targets": [3], // Ganti [3] dengan nomor indeks kolom yang ingin Anda ubah
