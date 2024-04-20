@@ -29,16 +29,18 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">User Count Chart</h4>
-                    <canvas id="doughnutChart"></canvas>
+    @if (auth()->user()->role == 'admin')
+        <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">User Count Chart</h4>
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection
 @push('scripts')
     <script>
