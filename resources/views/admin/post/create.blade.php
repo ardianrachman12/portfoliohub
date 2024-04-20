@@ -26,15 +26,16 @@
                             @csrf
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title" name="title" required>
+                                <input type="text" class="form-control" id="title" name="title" required
+                                    value="{{ old('title') }}">
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Description</label>
-                                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required></textarea>
+                                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required value="{{ old('deskripsi') }}"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="url">Url</label>
-                                <input type="text" class="form-control" id="url" name="url" required>
+                                <input type="text" class="form-control" id="url" name="url" required value="{{ old('url') }}">
                             </div>
                             <div class="form-group">
                                 <label>File upload</label>

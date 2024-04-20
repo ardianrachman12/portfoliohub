@@ -26,19 +26,19 @@
                             {{-- @method('PUT') --}}
                             <div class="form-group">
                                 <label for="name">fullname</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <input type="text" class="form-control" id="name" name="name" required value="{{ old('name') }}">
                             </div>
                             <div class="form-group">
                                 <label for="username">username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
+                                <input type="text" class="form-control" id="username" name="username" required value="{{ old('username') }}">
                             </div>
                             <div class="form-group">
                                 <label for="email">email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" required value="{{ old('email') }}">
                             </div>
                             <div class="form-group">
                                 <label for="phone">phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" required>
+                                <input type="text" class="form-control" id="phone" name="phone" required value="{{ old('phone') }}">
                             </div>
                             <div class="form-group">
                                 <label for="role">role</label>
