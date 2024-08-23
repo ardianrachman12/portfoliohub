@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/selectRegency', [ProfileController::class, 'selectRegency'])->name('selectRegency');
 
     Route::get('/getDataUserForChart', [DashboardController::class, 'getDataUserForChart']);
+    Route::get('/getIpAddressDataForChart', [DashboardController::class, 'getIpAddressDataForChart']);
 
     Route::get('/views', [ViewController::class, 'index'])->name('views.index');
 });

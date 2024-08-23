@@ -29,8 +29,8 @@
             </div>
         </div>
     </div>
-    @if (auth()->user()->role == 'admin')
-        <div class="row">
+    <div class="row">
+        @if (auth()->user()->role == 'admin')
             <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -39,8 +39,16 @@
                     </div>
                 </div>
             </div>
+        @endif
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">IP Address Access Chart</h4>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
         </div>
-    @endif
+    </div>
 @endsection
 @push('scripts')
     <script>
@@ -75,6 +83,43 @@
                 var doughnutChart = new Chart(doughnutChartCanvas, {
                     type: 'doughnut',
                     data: doughnutPieData
+                });
+            }
+        });
+        $.ajax({
+            url: '/getIpAddressDataForChart',
+            type: 'GET',
+            success: function(response) {
+                var ipLabels = [];
+                var ipData = [];
+
+                response.forEach(function(data) {
+                    ipLabels.push(data.ipaddress);
+                    ipData.push(data.total);
+                });
+
+                var barChartData = {
+                    labels: ipLabels,
+                    datasets: [{
+                        label: 'Number of Accesses',
+                        data: ipData,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                };
+
+                var barChartCanvas = document.getElementById("barChart");
+                var barChart = new Chart(barChartCanvas, {
+                    type: 'bar',
+                    data: barChartData,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
                 });
             }
         });
