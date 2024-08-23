@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', $data->username)
 @section('content')
     <!-- Masthead-->
     <header class="masthead bg-primary text-white text-center">

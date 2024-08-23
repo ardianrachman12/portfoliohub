@@ -5,8 +5,28 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>RoyalUI Admin</title>
+    <!-- Meta Description -->
+    <meta name="description"
+        content="PortfolioHub adalah platform untuk menampilkan portofolio profesional Anda. Buat dan bagikan karya terbaik Anda dengan dunia.">
+    <!-- Meta Keywords -->
+    <meta name="keywords"
+        content="portfolio, PortfolioHub, showcase, professional portfolio, karya, desain, fotografi, seni, programming, web development, creative work">
+    <!-- Meta Author -->
+    <meta name="author" content="PortfolioHub Team">
+    <title>PortfolioHub | Login</title>
     @include('admin.layout.partials.style')
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HP91T7P72D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HP91T7P72D');
+    </script>
 </head>
 
 <body>
@@ -24,7 +44,7 @@
                             </div>
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3" action="{{route('auth.login')}}" method="POST">
+                            <form class="pt-3" action="{{ route('auth.login') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="identity"
