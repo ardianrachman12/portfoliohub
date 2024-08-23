@@ -102,6 +102,11 @@ class UserController extends Controller
                 'user_id' => $userId,
                 'ipaddress' => $ipAddress,
             ]);
+        } else {
+            // Jika ada, perbarui kolom updated_at dengan waktu saat ini
+            $existingView->update([
+                'updated_at' => Carbon::now(),
+            ]);
         }
 
         // Dapatkan semua postingan pengguna
@@ -217,7 +222,7 @@ class UserController extends Controller
 
         $profiling = Profiling::where('user_id', $data->id)->first();
 
-        if(!$profiling){
+        if (!$profiling) {
             return redirect()->back()->with('error', 'belum ada profiling');
         }
 

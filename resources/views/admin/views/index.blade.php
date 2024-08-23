@@ -31,6 +31,7 @@
                                 <th>name</th>
                                 <th>ipaddress</th>
                                 <th>created at</th>
+                                <th>updated at</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,6 +41,7 @@
                                     <td>{{ $item->users->name }}</td>
                                     <td>{{ $item->ipaddress }}</td>
                                     <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->updated_at }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
