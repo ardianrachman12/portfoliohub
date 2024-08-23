@@ -33,6 +33,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('views.index')}}">
+                <i class="ti-eye menu-icon"></i>
+                <span class="menu-title">Views Website</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="/logout">
                 <i class="ti-power-off menu-icon"></i>
                 <span class="menu-title">Logout</span>

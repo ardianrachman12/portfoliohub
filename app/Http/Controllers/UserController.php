@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profiling;
 use App\Models\User;
 use App\Models\UserView;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
@@ -57,8 +58,9 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        $ipAddress = $request->ip();
         if ($user) {
-            $userView = new UserView(['user_id' => $user->id]);
+            $userView = new UserView(['user_id' => $user->id, 'ipaddress' => $ipAddress]);
             $user->views()->save($userView);
         }
         return redirect()->route('user.index')->with('success', 'berhasil tambah data');
@@ -67,22 +69,40 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($username)
+    public function show(Request $request, $username)
     {
         $data = User::where('username', $username)->firstOrFail();
         $profiling = Profiling::where('user_id', $data->id)->first();
 
         // Dapatkan atau buat record UserView berdasarkan user_id
-        $userViews = UserView::where('user_id', $data->id)->first();
-        if (!$userViews) {
-            $userViews = new UserView();
-            $userViews->user_id = $data->id;
-            $userViews->views = 0; // Inisialisasi views jika baru
-            $userViews->save();
-        }
+        // $userViews = UserView::where('user_id', $data->id)->first();
+        // if (!$userViews) {
+        //     $userViews = new UserView();
+        //     $userViews->user_id = $data->id;
+        //     $userViews->views = 0; // Inisialisasi views jika baru
+        //     $userViews->save();
+        // }
 
         // Increment jumlah pengunjung setiap kali halaman dilihat
-        $userViews->increment('views');
+        // $userViews->increment('views');
+
+        //mendapatakan alamat ip dan menyimpannya
+        $ipAddress = $request->ip();
+        $userId = $data->id;
+
+        // Periksa apakah ada entri dengan IP address yang sama pada hari yang sama
+        $existingView = UserView::where('ipaddress', $ipAddress)
+            ->where('user_id', $userId)
+            ->whereDate('created_at', Carbon::today())
+            ->first();
+
+        // Jika tidak ada, buat entri baru
+        if (!$existingView) {
+            UserView::create([
+                'user_id' => $userId,
+                'ipaddress' => $ipAddress,
+            ]);
+        }
 
         // Dapatkan semua postingan pengguna
         $posts = $data->posts;
@@ -197,6 +217,10 @@ class UserController extends Controller
 
         $profiling = Profiling::where('user_id', $data->id)->first();
 
+        if(!$profiling){
+            return redirect()->back()->with('error', 'belum ada profiling');
+        }
+
         $message = "Assalamuaikum Wr. Wb.\n";
         $message .= "*Nama : " . $request->name . "*\n";
         $message .= "*Email : " . $request->email . "*\n";
@@ -205,7 +229,7 @@ class UserController extends Controller
         // Membuat URL dengan informasi order detail
         $url = urlencode($message);
         // Mengambil nomor WhatsApp dari .env
-        $whatsappNumber = $profiling->whatsapp;
+        $whatsappNumber = $profiling->phone;
 
         // Membuat URL WhatsApp dengan nomor yang diambil dari .env
         $baseurl = "https://wa.me/{$whatsappNumber}?text=" . $url;

@@ -46,7 +46,7 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->role }}</td>
-                                    <td>{{ $item->views->views }}</td>
+                                    <td>{{ $item->views->count() }}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning" data-toggle="modal"
                                             data-target="#editModal{{ $loop->iteration }}">Edit</a>

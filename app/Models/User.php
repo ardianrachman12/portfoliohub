@@ -58,6 +58,6 @@ class User extends Authenticatable
 
     public function views()
     {
-        return $this->hasOne(UserView::class);
+        return $this->hasMany(UserView::class);
     }
 }

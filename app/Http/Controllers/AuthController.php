@@ -71,8 +71,10 @@ class AuthController extends Controller
         ]);
 
         // Membuat entri baru di model UserView
+
+        $ipAddress = $request->ip();
         if ($user) {
-            $userView = new UserView(['user_id' => $user->id]);
+            $userView = new UserView(['user_id' => $user->id, 'ipaddress' => $ipAddress]);
             $user->views()->save($userView);
         }
         return redirect()->route('auth.login')->with('success', 'berhasil registrasi');

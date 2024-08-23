@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('user_views', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedInteger('views')->default(0);
+            // $table->unsignedInteger('views')->default(0);
+            $table->string('ipaddress');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

@@ -23,9 +23,12 @@ class UserSeeder extends Seeder
             'password' => bcrypt('admin'),
         ]);
 
-        UserView::create([
-            'user_id' => '1',
-            'views' => '0',
-        ]);
+        // UserView::create([
+        //     'user_id' => '1',
+        //     'ipaddress' => '127.0.0.1',
+        // ]);
+
+        \App\Models\User::factory(10)->create();
+
     }
 }

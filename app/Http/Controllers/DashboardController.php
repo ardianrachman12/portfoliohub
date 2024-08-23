@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index(){
         $user = auth()->user();
-        $data = UserView::where('user_id', $user->id)->first();
+        $data = UserView::where('user_id', $user->id)->count();
 
         $post = Post::where('user_id', $user->id)->count();
 
