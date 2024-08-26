@@ -8,3 +8,4 @@
     type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="{{asset('template-home/css/styles.css')}}" rel="stylesheet" />
+@stack('style')
