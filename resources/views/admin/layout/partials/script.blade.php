@@ -8,7 +8,7 @@
 <!-- inject:js -->
 <script src="{{ asset('template-admin/js/off-canvas.js') }}"></script>
 <script src="{{ asset('template-admin/js/hoverable-collapse.js') }}"></script>
-<script src="{{ asset('template-admin/js/template.js') }}"></script>
+{{-- <script src="{{ asset('template-admin/js/template.js') }}"></script> --}}
 <script src="{{ asset('template-admin/js/todolist.js') }}"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->

@@ -9,7 +9,7 @@
                 @if ($profiling && $profiling->avatar)
                     <img src="/uploads/avatar/{{ $profiling->avatar }}" alt="">
                 @else
-                    <img src="https://tinyurl.com/profil-default" alt="">
+                    <img src="{{asset('logo/profile-default.webp')}}" alt="">
                 @endif
             </div>
             {{-- <img class="masthead-avatar mb-5" src="{{asset('template-home/assets/img/avataaars.svg')}}" alt="..." /> --}}
