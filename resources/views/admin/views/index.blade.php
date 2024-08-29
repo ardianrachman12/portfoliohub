@@ -46,8 +46,8 @@
                                             <button class="btn btn-primary" type="submit">detail</button>
                                         </form>
                                     </td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->updated_at }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y, H:i:s') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->updated_at)->format('d F Y, H:i:s') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
