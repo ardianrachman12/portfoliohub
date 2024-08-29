@@ -16,6 +16,8 @@
                 <div class="card-body">
                     <h4 class="card-title">Detail Ip Address</h4>
                     <ul>
+                        <li><strong>IP Address:</strong> {{ $ipaddress->ipaddress }}</li>
+                        <li><strong>Waktu Akses:</strong> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y, H:i:s') }}</li>
                         <li><strong>Country:</strong> {{ $ipDetails['country'] }}</li>
                         <li><strong>Region:</strong> {{ $ipDetails['regionName'] }}</li>
                         <li><strong>City:</strong> {{ $ipDetails['city'] }}</li>
