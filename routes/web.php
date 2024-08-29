@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/getIpAddressDataForChart', [DashboardController::class, 'getIpAddressDataForChart']);
 
     Route::get('/views', [ViewController::class, 'index'])->name('views.index');
+    Route::get('/views/{ipaddress}', [ViewController::class, 'detail'])->name('views.detail');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
