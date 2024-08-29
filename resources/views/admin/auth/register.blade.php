@@ -47,20 +47,20 @@
                             <form class="pt-3" action="{{ route('auth.registerStore') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id=""
-                                        placeholder="Fullname" name="name" required>
+                                    <input type="text" class="form-control form-control-lg" id="" 
+                                        placeholder="Fullname" name="name" value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id=""
-                                        placeholder="Username" name="username" required>
+                                    <input type="text" class="form-control form-control-lg" id="" 
+                                        placeholder="Username" name="username" value="{{ old('username') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id=""
-                                        placeholder="Email" name="email" required>
+                                    <input type="email" class="form-control form-control-lg" id="" 
+                                        placeholder="Email" name="email" value="{{ old('email') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id=""
-                                        placeholder="No Whatsapp format = 628xxx" name="phone" required>
+                                    <input type="text" class="form-control form-control-lg" id="" 
+                                        placeholder="No Whatsapp format = 628xxx" name="phone" value="{{ old('phone') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg"
