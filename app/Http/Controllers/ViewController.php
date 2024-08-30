@@ -56,4 +56,10 @@ class ViewController extends Controller
 
         return view('admin.views.detail', compact('ipaddress', 'ipDetails'));
     }
+
+    public function delete($id){
+        $ipaddress = UserView::findOrFail($id);
+        $ipaddress->delete();
+        return redirect()->route('views.index')->with('success', 'berhasil hapus data');
+    }
 }

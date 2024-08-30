@@ -45,6 +45,14 @@
                                         <form action="{{ route('views.detail', $item->ipaddress) }}">
                                             <button class="btn btn-primary" type="submit">detail</button>
                                         </form>
+                                        @if (auth()->user()->role == 'admin')
+                                            <form action="{{ route('userview.delete', $item->id) }}" type="button" method="post"
+                                                onsubmit="return confirm('Yakin akan dihapus?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger mt-2">delete</button>
+                                            </form>
+                                        @endif
                                     </td>
                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y, H:i:s') }}</td>
                                     <td>{{ \Carbon\Carbon::parse($item->updated_at)->format('d F Y, H:i:s') }}</td>

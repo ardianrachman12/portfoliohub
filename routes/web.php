@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
+use App\Models\UserView;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,6 +41,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::post('/store', [UserController::class, 'store'])->name('user.store');
     Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+    
+    Route::delete('/views/delete/{id}',[ViewController::class, 'delete'])->name('userview.delete');
 });
 
 Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
