@@ -23,12 +23,12 @@ class ViewController extends Controller
         if ($user->role == 'admin') {
             $ipaddress = UserView::where('ipaddress', $request->ipaddress)
                 ->first();
-        } else {
-            $ipaddress = UserView::where('user_id', $user)
+        } else if ($user->role == 'user') {
+            $ipaddress = UserView::where('user_id', $user->id)
                 ->where('ipaddress', $request->ipaddress)
                 ->first();
         }
-
+        // dd($ipaddress);
         if (!$ipaddress) {
             abort(404, 'Data not found');
         }
@@ -53,7 +53,7 @@ class ViewController extends Controller
             'timezone' => $response->json('timezone') ?? 'Unknown',
             'ip' => $response->json('query') ?? $ipaddress->ipaddress,
         ];
-    
+
         return view('admin.views.detail', compact('ipaddress', 'ipDetails'));
     }
 }
