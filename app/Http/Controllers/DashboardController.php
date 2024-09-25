@@ -6,12 +6,13 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\UserView;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
         $data = UserView::where('user_id', $user->id)->count();
@@ -22,24 +23,32 @@ class DashboardController extends Controller
 
         $post = Post::where('user_id', $user->id)->count();
 
-        $viewsByMonth = UserView::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as views')
+        $selectedMonth = $request->input('month', Carbon::now()->month);
+        $selectedYear = $request->input('year', Carbon::now()->year);
+
+        $viewsByDay = UserView::selectRaw('DAY(created_at) as day, COUNT(*) as views')
             ->where('user_id', $user->id)
-            ->groupBy('year', 'month')
-            ->orderBy('year', 'asc')
-            ->orderBy('month', 'asc')
+            ->whereYear('created_at', $selectedYear)
+            ->whereMonth('created_at', $selectedMonth)
+            ->groupBy('day')
+            ->orderBy('day', 'asc')
             ->get();
 
-        // Mengambil total views per bulan dalam array untuk Chart.js
         $chartData = [];
-        $months = [];
-        foreach ($viewsByMonth as $view) {
+        $days = [];
+        foreach ($viewsByDay as $view) {
             $chartData[] = $view->views;
-            $months[] = Carbon::create($view->year, $view->month)->format('F Y'); // Format bulan dan tahun
+            $days[] = $view->day;
         }
 
-        // dd($post);
-
-        return view('admin.dashboard.index', compact('data', 'post', 'viewToday', 'chartData', 'months'));
+        $months = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $months[] = [
+                'value' => $m,
+                'name' => Carbon::create(null, $m)->format('F')
+            ];
+        }
+        return view('admin.dashboard.index', compact('data', 'post', 'viewToday', 'chartData', 'days', 'months', 'selectedMonth', 'selectedYear'));
     }
     public function getDataUserForChart()
     {

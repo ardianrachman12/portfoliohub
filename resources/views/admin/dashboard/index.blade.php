@@ -61,11 +61,42 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 grid-margin stretch-card">
+
+    </div>
+    <div class="row">
+        <div class="mb-4">
+            <form id="monthForm" method="GET" action="{{ route('dashboard') }}">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="mb-2" for="month">Pilih Bulan:</label>
+                        <select class="form-select" name="month" id="month"
+                            onchange="document.getElementById('monthForm').submit();">
+                            @foreach ($months as $month)
+                                <option value="{{ $month['value'] }}" {{ $selectedMonth == $month['value'] ? 'selected' : '' }}>
+                                    {{ $month['name'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="mb-2" for="year">Pilih Tahun:</label>
+                        <select class="form-select form-select" name="year" id="year"
+                            onchange="document.getElementById('monthForm').submit();">
+                            @for ($y = 2020; $y <= now()->year; $y++)
+                                <option value="{{ $y }}" {{ $selectedYear == $y ? 'selected' : '' }}>
+                                    {{ $y }}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">view by month Chart</h4>
-                    <canvas id="viewsChart" width="400" height="200"></canvas>
+                    <h4 class="card-title">Daily IP Address Access Chart</h4>
+                    <canvas id="viewsChart" width="400" height="150"></canvas>
                 </div>
             </div>
         </div>
@@ -148,9 +179,9 @@
         var viewsChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: @json($months),
+                labels: @json($days),
                 datasets: [{
-                    label: 'Jumlah Views',
+                    label: 'Jumlah Views per Hari',
                     data: @json($chartData),
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
