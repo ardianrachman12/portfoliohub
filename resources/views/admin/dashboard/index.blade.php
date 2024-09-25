@@ -61,6 +61,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">view by month Chart</h4>
+                    <canvas id="viewsChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @push('scripts')
@@ -134,6 +142,28 @@
                         }
                     }
                 });
+            }
+        });
+        var ctx = document.getElementById('viewsChart').getContext('2d');
+        var viewsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @json($months),
+                datasets: [{
+                    label: 'Jumlah Views',
+                    data: @json($chartData),
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
     </script>
