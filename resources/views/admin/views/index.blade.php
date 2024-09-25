@@ -24,7 +24,7 @@
         <div class="card position-relative">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="myTable" class="table table-striped table-bordered table-hover">
+                    <table id="myTable" class="table table-hover cell-border">
                         <thead>
                             <tr>
                                 <th>no</th>

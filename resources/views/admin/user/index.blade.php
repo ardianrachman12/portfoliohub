@@ -24,7 +24,7 @@
         <div class="card position-relative">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="myTable" class="table table-striped table-bordered table-hover">
+                    <table id="myTable" class="table table-hover cell-border">
                         <thead>
                             <tr>
                                 <th>no</th>
@@ -56,7 +56,8 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger mt-2">Hapus</button>
                                         </form>
-                                        <a target="_blank" href="{{route('user.show', $item->username)}}" class="btn btn-info mt-2">visit</a>
+                                        <a target="_blank" href="{{ route('user.show', $item->username) }}"
+                                            class="btn btn-info mt-2">visit</a>
                                     </td>
                                 </tr>
                                 <!-- Modal -->
@@ -128,5 +129,6 @@
         $(document).ready(function() {
             $('#myTable').DataTable();
         });
+        // new DataTable('#myTable');
     </script>
 @endpush
