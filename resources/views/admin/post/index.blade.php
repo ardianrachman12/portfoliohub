@@ -44,7 +44,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->deskripsi }}</td>
-                                    <td><a href="{{ strpos($post->url, 'http://') === 0 || strpos($post->url, 'https://') === 0 ? $post->url : 'http://' . $post->url }}"
+                                    <td><a style="text-wrap: balance;" href="{{ strpos($post->url, 'http://') === 0 || strpos($post->url, 'https://') === 0 ? $post->url : 'http://' . $post->url }}"
                                             target="_blank">{{ $post->url }}</a></td>
                                     <td>
                                         <div class="">
@@ -138,9 +138,9 @@
         $(document).ready(function() {
             $('#myTable').DataTable({
                 "columnDefs": [{
-                    "targets": [1, 2, 3],
+                    "targets": [1, 2],
                     "render": function(data, type, row) {
-                        return '<div style="word-break: break-word; white-space: pre-line;">' + data + '</div>';
+                        return '<div style="word-wrap: break-word; white-space: pre-line;">' + data + '</div>';
                     }
                     
                 }]
