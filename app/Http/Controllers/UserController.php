@@ -112,6 +112,9 @@ class UserController extends Controller
         // Dapatkan semua postingan pengguna
         $posts = $data->posts;
 
+        $projects = $posts->where('tipe', 'project')->all();
+        $certificates = $posts->where('tipe', 'certificate')->all();
+
         // Mendapatkan data provinsi
         $path_province = public_path('location/province.json');
         $province = json_decode(File::get($path_province), true);
@@ -163,6 +166,8 @@ class UserController extends Controller
         return view('admin.user.show', [
             'data' => $data,
             'posts' => $posts,
+            'projects' => $projects,
+            'certificates' => $certificates,
             'profiling' => $profiling,
             'value_province_title' => $value_province_title,
             'value_regency_title' => $value_regency_title,

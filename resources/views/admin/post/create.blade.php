@@ -38,6 +38,14 @@
                                 <input type="text" class="form-control" id="url" name="url" required value="{{ old('url') }}">
                             </div>
                             <div class="form-group">
+                                <label for="tipe">Tipe</label>
+                                <select class="form-control" name="tipe" id="tipe">
+                                    <option value="" disabled selected>pilih tipe postingan</option>
+                                    <option value="project">Project</option>
+                                    <option value="certificate">Certificate</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>File upload</label>
                                 <input type="file" class="form-control" placeholder="Upload Image" name="image[]">
                             </div>

@@ -58,7 +58,8 @@ class PostController extends Controller
             'title' => $request->input('title'),
             'deskripsi' => $request->input('deskripsi'),
             'image' => $imagePaths,
-            'url' => $request->input('url')
+            'url' => $request->input('url'),
+            'tipe' => $request->input('tipe'),
         ];
 
         Post::create($input);
@@ -112,6 +113,7 @@ class PostController extends Controller
                 'deskripsi' => $request->input('deskripsi'),
                 'image' => $imagePaths,
                 'url' => $request->input('url'),
+                'tipe' => $request->input('tipe'),
             ];
         } else {
             // Jika tidak ada gambar yang diunggah, gunakan gambar yang sudah ada
@@ -120,6 +122,7 @@ class PostController extends Controller
                 'title' => $request->input('title'),
                 'deskripsi' => $request->input('deskripsi'),
                 'url' => $request->input('url'),
+                'tipe' => $request->input('tipe'),
             ];
         }
 

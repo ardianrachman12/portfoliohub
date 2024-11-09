@@ -31,6 +31,7 @@
                                 <th>title</th>
                                 <th>description</th>
                                 <th>url</th>
+                                <th>tipe</th>
                                 <th>image</th>
                                 @if ($user->role == 'admin')
                                     <th>created by</th>
@@ -44,8 +45,10 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->deskripsi }}</td>
-                                    <td><a style="text-wrap: balance;" href="{{ strpos($post->url, 'http://') === 0 || strpos($post->url, 'https://') === 0 ? $post->url : 'http://' . $post->url }}"
+                                    <td><a style="text-wrap: balance;"
+                                            href="{{ strpos($post->url, 'http://') === 0 || strpos($post->url, 'https://') === 0 ? $post->url : 'http://' . $post->url }}"
                                             target="_blank">{{ $post->url }}</a></td>
+                                    <td>{{ $post->tipe }}</td>
                                     <td>
                                         <div class="">
                                             @if ($post->image)
@@ -100,6 +103,17 @@
                                                                 name="url" value="{{ $post->url }}">
                                                         </div>
                                                         <div class="form-group">
+                                                            <label for="tipe">Tipe</label>
+                                                            <select class="form-control" name="tipe" id="tipe">
+                                                                <option value="project"
+                                                                    @if ($post->tipe == 'project') selected @endif>
+                                                                    Project</option>
+                                                                <option value="certificate"
+                                                                    @if ($post->tipe == 'certificate') selected @endif>
+                                                                    Certificate</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label>File upload</label>
                                                             {{-- <input type="file" name="image" class="file-upload-default"> --}}
                                                             <div class="input-group col-xs-12">
@@ -118,7 +132,7 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                                        <button type="submit" class="btn btn-primary me-2">Update</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -140,9 +154,10 @@
                 "columnDefs": [{
                     "targets": [1, 2],
                     "render": function(data, type, row) {
-                        return '<div style="word-wrap: break-word; white-space: pre-line;">' + data + '</div>';
+                        return '<div style="word-wrap: break-word; white-space: pre-line;">' +
+                            data + '</div>';
                     }
-                    
+
                 }]
             });
         });

@@ -9,7 +9,7 @@
                 @if ($profiling && $profiling->avatar)
                     <img src="/uploads/avatar/{{ $profiling->avatar }}" alt="">
                 @else
-                    <img src="{{asset('logo/profile-default.webp')}}" alt="">
+                    <img src="{{ asset('logo/profile-default.webp') }}" alt="">
                 @endif
             </div>
             {{-- <img class="masthead-avatar mb-5" src="{{asset('template-home/assets/img/avataaars.svg')}}" alt="..." /> --}}
@@ -49,8 +49,8 @@
             <!-- Portfolio Grid Items-->
             <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
-                @foreach ($posts as $item)
-                    <div class="col-md-6 col-lg-4 mb-5">
+                @foreach ($projects as $item)
+                    <div class="col-md-6 col-lg-4">
                         <div class="portfolio-item mx-auto ratio ratio-16x9 " data-bs-toggle="modal"
                             data-bs-target="#portfolioModal{{ $loop->iteration }}">
                             <div
@@ -58,7 +58,38 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i
                                         class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="/uploads/{{ $item->image[0] }}" alt="..." style="object-fit: cover; width: 100%; height: 100%;"/>
+                            <img class="img-fluid" src="/uploads/{{ $item->image[0] }}" alt="..."
+                                style="object-fit: cover; width: 100%; height: 100%;" />
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <section class="page-section portfolio" id="certificate">
+        <div class="container">
+            <!-- Portfolio Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Certificate</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Portfolio Grid Items-->
+            <div class="row justify-content-center">
+                <!-- Portfolio Item 1-->
+                @foreach ($certificates as $item)
+                    <div class="col-md-4 col-lg-3 mb-5">
+                        <div class="portfolio-item mx-auto ratio ratio-16x9 " data-bs-toggle="modal"
+                            data-bs-target="#certificateModal{{ $loop->iteration }}">
+                            <div
+                                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i
+                                        class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="/uploads/{{ $item->image[0] }}" alt="..."
+                                style="object-fit: cover; width: 100%; height: 100%;" />
                         </div>
                     </div>
                 @endforeach
@@ -91,7 +122,7 @@
         </div>
     </section>
     <!-- Portfolio Modals-->
-    @foreach ($posts as $item)
+    @foreach ($projects as $item)
         <div class="portfolio-modal modal fade" id="portfolioModal{{ $loop->iteration }}" tabindex="-1"
             aria-labelledby="portfolioModal{{ $loop->iteration }}" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -117,8 +148,59 @@
                                         <div class="carousel-inner">
                                             @foreach ($item->image as $key => $image)
                                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                                    <img class="d-block" src="/uploads/{{ $image }}" alt="..."
-                                                        width="100%">
+                                                    <img class="d-block" src="/uploads/{{ $image }}"
+                                                        alt="..." width="100%">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                    <div class="mt-4">
+                                        <p>{{ $item->deskripsi }}</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="{{ strpos($item->url, 'http://') === 0 || strpos($item->url, 'https://') === 0 ? $item->url : 'http://' . $item->url }}"
+                                            target="_blank">
+                                            <button class="btn btn-info d-block w-100">Go to site</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    <!-- Certificate Modals-->
+    @foreach ($certificates as $item)
+        <div class="portfolio-modal modal fade" id="certificateModal{{ $loop->iteration }}" tabindex="-1"
+            aria-labelledby="certificateModal{{ $loop->iteration }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                            aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">
+                                        {{ $item->title }}
+                                    </h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- slider image portfolio-->
+                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @foreach ($item->image as $key => $image)
+                                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                                    <img class="d-block" src="/uploads/{{ $image }}"
+                                                        alt="..." width="100%">
                                                 </div>
                                             @endforeach
                                         </div>

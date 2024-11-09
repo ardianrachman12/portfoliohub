@@ -103,7 +103,12 @@
 
                 @foreach ($socialLinks as $index => $link)
                     @php
-                        $externalLink = $link !== null ? (Str::startsWith($link, ['http://', 'https://']) ? $link : 'http://' . $link) : '#';
+                        $externalLink =
+                            $link !== null
+                                ? (Str::startsWith($link, ['http://', 'https://'])
+                                    ? $link
+                                    : 'http://' . $link)
+                                : '#';
 
                         $socialIcon = '';
 
@@ -124,11 +129,32 @@
                         }
                     @endphp
 
-                    <a class="btn btn-outline-light btn-social mx-1" href="{{ $externalLink }}"
-                        @if ($link !== null) target="_blank" @endif>
+                    <a class="btn btn-outline-light btn-social mx-1"
+                        @if ($link !== null) target="_blank" href="{{ $externalLink }}" @endif>
                         <i class="fab fa-fw {{ $socialIcon }}"></i>
                     </a>
                 @endforeach
+
+                {{-- <a class="btn btn-outline-light btn-social mx-1"
+                    @if ($link[0] === null) href="#" @else href="{{ $link[0] }}" @endif
+                    target="_blank">
+                    <i class="fab fa-fw fa-facebook-f"></i>
+                </a>
+                <a class="btn btn-outline-light btn-social mx-1"
+                    @if ($link[1] === null) href="#" @else href="{{ $link[1] }}" @endif
+                    target="_blank">
+                    <i class="fab fa-fw fa-instagram"></i>
+                </a>
+                <a class="btn btn-outline-light btn-social mx-1"
+                    @if ($link[2] === null) href="#" @else href="{{ $link[2] }}" @endif
+                    target="_blank">
+                    <i class="fab fa-fw fa-linkedin-in"></i>
+                </a>
+                <a class="btn btn-outline-light btn-social mx-1"
+                    @if ($link[3] === null) href="#" @else href="{{ $link[3] }}" @endif
+                    target="_blank">
+                    <i class="fab fa-fw fa-github"></i>
+                </a> --}}
             </div>
 
             <!-- Footer About Text-->
