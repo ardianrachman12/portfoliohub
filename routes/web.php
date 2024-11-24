@@ -45,6 +45,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/views/delete/{id}',[ViewController::class, 'delete'])->name('userview.delete');
 });
 
+// Authentication
 Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
