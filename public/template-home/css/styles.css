@@ -10832,8 +10832,13 @@ html {
   scroll-padding-top: calc(4.5rem - 1px);
 }
 
-.page-section {
+.page-section#about,
+.page-section#portfolio,
+.page-section#contact {
   padding: 6rem 0;
+}
+.page-section#certificate {
+  padding-bottom: 6rem;
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
