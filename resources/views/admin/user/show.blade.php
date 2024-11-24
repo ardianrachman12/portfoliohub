@@ -50,7 +50,7 @@
             <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
                 @foreach ($projects as $item)
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="portfolio-item mx-auto ratio ratio-16x9 " data-bs-toggle="modal"
                             data-bs-target="#portfolioModal{{ $loop->iteration }}">
                             <div
@@ -66,9 +66,10 @@
             </div>
         </div>
     </section>
+    <!-- certificate Section-->
     <section class="page-section portfolio" id="certificate">
         <div class="container">
-            <!-- Portfolio Section Heading-->
+            <!-- certificate Section Heading-->
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Certificate</h2>
             <!-- Icon Divider-->
             <div class="divider-custom">
@@ -76,11 +77,11 @@
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!-- Portfolio Grid Items-->
+            <!-- certificate Grid Items-->
             <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
+                <!-- certificate Item 1-->
                 @foreach ($certificates as $item)
-                    <div class="col-md-4 col-lg-3 mb-5">
+                    <div class="col-md-4 col-lg-3 mb-4">
                         <div class="portfolio-item mx-auto ratio ratio-16x9 " data-bs-toggle="modal"
                             data-bs-target="#certificateModal{{ $loop->iteration }}">
                             <div
