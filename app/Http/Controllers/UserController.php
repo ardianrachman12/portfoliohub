@@ -101,12 +101,12 @@ class UserController extends Controller
         if (!$existingView) {
             $response = Http::get("http://ip-api.com/json/".$ipAddress);
 
-            if ($response->failed()) {
-                abort(404, 'API request failed');
+            if (!$response->failed()) {
+                // abort(404, 'API request failed');
+                $ipDetails = $response->json();
             }
-            $ipDetails = $response->json();
 
-            dd($ipDetails);
+            // dd($ipDetails);
             UserView::create([
                 'user_id' => $userId,
                 'ipaddress' => $ipAddress,
