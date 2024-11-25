@@ -30,6 +30,7 @@
                                 <th>no</th>
                                 <th>name</th>
                                 <th>ipaddress</th>
+                                <th>country</th>
                                 <th>action</th>
                                 <th>created at</th>
                                 <th>updated at</th>
@@ -41,6 +42,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->users->name }}</td>
                                     <td>{{ $item->ipaddress }}</td>
+                                    <td>{{ $item->country }}</td>
                                     <td>
                                         <form action="{{ route('views.detail', $item->ipaddress) }}">
                                             <button class="btn btn-primary" type="submit">detail</button>

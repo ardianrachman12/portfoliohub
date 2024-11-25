@@ -99,18 +99,15 @@ class UserController extends Controller
 
         // Jika tidak ada, buat entri baru
         if (!$existingView) {
-            $response = Http::get("http://ip-api.com/json/".$ipAddress);
+            $response = Http::get("http://ip-api.com/json/" . $ipAddress);
 
-            if (!$response->failed()) {
-                // abort(404, 'API request failed');
-                $ipDetails = $response->json();
-            }
+            $ipDetails = $response->json();
 
             // dd($ipDetails);
             UserView::create([
                 'user_id' => $userId,
                 'ipaddress' => $ipAddress,
-                'country' => $ipDetails ? $ipDetails['country'] : null
+                'country' => $ipDetails['status'] === 'fail' || $response->failed() ? null : $ipDetails['country'],
             ]);
         } else {
             // Jika ada, perbarui kolom updated_at dengan waktu saat ini
